@@ -27,12 +27,12 @@
         />
       </div>
       <div class="flex justify-between">
-        <router-link
+        <NuxtLink
           to="/sign-up"
           class="text-xs"
         >
           회원가입
-        </router-link>
+        </NuxtLink>
         <router-link
           to=""
           class="text-xs"
@@ -49,6 +49,7 @@
   </div>
 </template>
 <script setup lang="ts">
+
 </script>
 <style>
     
