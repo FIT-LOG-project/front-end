@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "build": "nuxt build",
-    "dev": "nuxt dev",
+    "dev": "nuxt dev --https --ssl-cert localhost.pem --ssl-key localhost-key.pem",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
@@ -16,11 +16,13 @@
     "@pinia/nuxt": "^0.5.1",
     "nuxt": "^3.11.1",
     "pinia": "^2.1.7",
+    "pinia-plugin-persistedstate": "^3.2.1",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0"
   },
   "devDependencies": {
     "@nuxt/eslint-config": "^0.2.0",
+    "@pinia-plugin-persistedstate/nuxt": "^1.2.0",
     "eslint": "^8.57.0"
   }
 }

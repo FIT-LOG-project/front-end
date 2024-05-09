@@ -37,6 +37,14 @@ export const useErrorCodeStore = defineStore('errorCode', {
         PASSWORD_NEW_NOT_AGREEMENT: {
             code: 23,
             msg: "재확인 비밀 번호가 일치하지 않습니다."
+        },
+        EXPIRED_ACCESS_TOKEN: {
+            code: 62,
+            msg: "액세스 토큰이 만료되었습니다."
+        },
+        INCORRECT_TOKEN: {
+            code: 63,
+            msg: "올바르지 않은 토큰입니다. 로그아웃 진행"
         }
     })
 })
