@@ -59,6 +59,8 @@
 </template>
 <script setup lang="ts">
 const errorStore = useErrorStore()
+const authStore = useAuthStore()
+const tokenStore = useTokenStore()
 const userStore = useUserStore()
 
 const loginUser = reactive({
@@ -83,15 +85,23 @@ const login = async () => {
 
       if (httpCode === 200) {
         console.log("[RESPONSE:" + response._data.message + "]")
+
+        const loginMemberInfo: UserInfo = response._data.data
         const accessToken: string | null = response.headers.get("Authorization")
 
         if (accessToken != null) {
-          userStore.setIsAuthentication(true)
-          userStore.setAccessToken(accessToken)
-          userStore.setEmail(loginUser.email)
-          navigateTo("/")
+          authStore.setIsAuthentication(true)
+          userStore.setUser(loginMemberInfo.email, loginMemberInfo.nickname, loginMemberInfo.status)
+          tokenStore.setAccessToken(accessToken)
         }
       }
+    }
+  }).then((data: any) => {
+    const responseData: UserInfo = data.data;
+    if (responseData.status == "NEW") {
+      navigateTo("/new-info/" + responseData.email)
+    } else if (responseData.status == "NORMAL") {
+      navigateTo("/weight/" + responseData.email)
     }
   })
 }

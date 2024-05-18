@@ -1,33 +1,46 @@
 import { defineStore } from "pinia";
 
+export interface UserInfo {
+    email: string | null,
+    nickname: string | null,
+    status: string | null
+}
+
 export const useUserStore = defineStore('user', {
     state: () => ({
-        _isAuthenctication: false,
-        _accessToken:"Bearer ",
-        _email:""
+        _email: "" as string | null,
+        _nickname:"" as string | null,
+        _status:"" as string | null
     }),
     getters: {
 
     },
     actions: {
-        setIsAuthentication(isAuthentication: boolean) {
-            this._isAuthenctication = isAuthentication
+        setUser(email: string | null, nickname: string | null, status: string | null) {
+            this._email = email
+            this._nickname = nickname,
+            this._status = status
         },
-        getIsAuthentication() {
-            return this._isAuthenctication
-        },
-        setAccessToken(token: string) {
-            this._accessToken = this._accessToken.concat(token)
-        },
-        getAccessToken() {
-            return this._accessToken
-        },
-        setEmail(email: string) {
+        setEmail(email: string | null) {
             this._email = email
         },
         getEmail() {
-            return this._email
+            return this._email;
+        },
+        setNickname(nickname: string | null) {
+            this._nickname = nickname
+        },
+        getNickname() {
+            return this._nickname
+        },
+        setStatus(status: string | null) {
+            this._status = status
+        },
+        getStatus() {
+            return this._status
         }
     },
-    persist: true
+    persist: {
+        storage: persistedState.sessionStorage
+    }
 })

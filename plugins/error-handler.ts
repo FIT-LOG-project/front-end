@@ -1,6 +1,8 @@
 export default defineNuxtPlugin((nuxtApp) => {
     const errorCodeStore = useErrorCodeStore()
     const userStore = useUserStore()
+    const authStore = useAuthStore()
+    const tokenStore = useTokenStore()
 
     nuxtApp.hook('vue:error', (error: any) => {
         const errorCodes: number[] = error.data.errorCodes
@@ -18,7 +20,7 @@ export default defineNuxtPlugin((nuxtApp) => {
                     email: userStore.getEmail()
                 },
                 headers: {
-                    Authorization: userStore.getAccessToken()
+                    Authorization: tokenStore.getAccessToken()
                 }
             })
             return
@@ -31,7 +33,10 @@ export default defineNuxtPlugin((nuxtApp) => {
         if(errorCodes.includes(errorCodeStore.INCORRECT_TOKEN.code)) {
             console.log(errorCodeStore.INCORRECT_TOKEN.msg)
 
-            userStore.$reset
+            tokenStore.$reset
+            authStore.$reset
+            const authCookie = useCookie("auth")
+            authCookie.value = null
             navigateTo("/login")
             return
         }

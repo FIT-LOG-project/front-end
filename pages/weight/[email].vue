@@ -1,9 +1,10 @@
 <template lang="">
   <div>
-    <h1>운동 일지</h1>
+    {{ $route.params.email }}
   </div>
 </template>
 <script setup lang="ts">
+const route = useRoute()
 </script>
 <style lang="">
     

@@ -22,6 +22,14 @@ export const useErrorCodeStore = defineStore('errorCode', {
             code: 11,
             msg: "이미 존재하는 이메일 입니다."
         },
+        NICKNAME_FIELD: {
+            code: 12,
+            msg: "2 ~ 10 사이의 닉네임을 입력해주세요."
+        },
+        NICKNAME_DUPLICATE: {
+            code: 13,
+            msg: "이미 존재하는 닉네임입니다."
+        },
         PASSWORD_FIELD: {
             code: 20,
             msg: "6 ~ 15 자리의 비밀 번호를 입력해주세요."
